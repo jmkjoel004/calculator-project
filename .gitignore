@@ -1,0 +1,9 @@
+# Ignore virtual environment
+env/
+
+# Bytecode files
+__pycache__/
+*.pyc
+
+# Ignore results file if you don't want to track it
+results.txt
