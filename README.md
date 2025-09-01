@@ -1,6 +1,5 @@
 # calculator-project
-
-# Python Calculator 🧮
+# Python Calculator 
 
 This is a terminal-based calculator that solves:
 - Fractions
