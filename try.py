@@ -2,7 +2,10 @@
 from maths import circle_area, fraction, f, meters_to_feet, polynomial, pythagoras, Cylinder_volume, feet_to_meters
 from datetime import datetime
 from colorama import Fore, Style, init
+from pyfiglet import figlet_format
 init(autoreset=True)
+
+print(figlet_format("My Calculator", font="slant"))
 
 # Initialize result variables
 error_occurred = None
@@ -33,6 +36,9 @@ def show_menu():
 
 try:
     while again == 'yes':
+        name = input("name: " )
+        print(figlet_format(name, font="isometric1"))
+
         respond = show_menu()
 
         if respond == 'a':
@@ -79,7 +85,7 @@ try:
             print(Fore.CYAN  + "Cicle area : ", circle_area_result)
 
         elif respond =='h':
-            f = float(input("f = "))
+            f = float(input("Feet = "))
             feet_to_meters_result = round(feet_to_meters(f), 3)
             print(Fore.CYAN  + "meters : ", feet_to_meters_result)
 
@@ -89,7 +95,9 @@ try:
 
         again = input("Continue? (yes/no): ").strip().lower()
 
-    print(Fore.MAGENTA + "Thanks for using the calculator. Goodbye!")
+    goodbye_text = figlet_format("Goodbye!", font="starwars", width=80)
+    print(Fore.BLUE + goodbye_text)
+
 
 except Exception as e:
     error_occurred = str(e)
@@ -100,6 +108,8 @@ with open("results.txt", "a", encoding="utf-8") as file:
     now = datetime.now()
     if error_occurred is not None:
         file.write(f"Date and time: {now}\nSomething went wrong: {error_occurred}\n")
+    if name is not None:
+        file.write(f"Name : {name}\n")
     if frac_result is not None:
         file.write(f"Date and time: {now}\nFraction result: {frac_result}\n")
     if f_result is not None:
