@@ -7,13 +7,16 @@ init(autoreset=True)
 
 print(figlet_format("My Calculator", font="slant"))
 
+now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
 # Initialize result variables
 error_occurred = None
 frac_result = None
 f_result = None
 poly_result = None
 pythagoras_result = None
-Cylinder_volume_result = None
+cylinder_volume_result = None
 meters_to_feet_result = None
 circle_area_result = None
 feet_to_meters_result = None
@@ -33,65 +36,67 @@ def show_menu():
         "Enter your choice: "
     ).strip().lower()
 
+name = input("name: " )
+
 
 try:
     while again == 'yes':
-        name = input("name: " )
         print(figlet_format(name, font="isometric1"))
 
         respond = show_menu()
 
-        if respond == 'a':
-            x = float(input("x = "))
-            y = float(input("y = "))
-            frac_result = round(fraction(x, y), 3)
-            print(Fore.GREEN + "Fraction:", frac_result)
+        match respond :
+            case 'a':
+                x = float(input("x = "))
+                y = float(input("y = "))
+                frac_result = round(fraction(x, y), 3)
+                print(Fore.GREEN + "Fraction:", frac_result)
 
-        elif respond == 'c':
-            x = float(input("x = "))
-            a = int(input("a = "))
-            b = int(input("b = "))
-            c = int(input("c = "))
-            f_result = round(f(x, a, b, c), 3)
-            print(Fore.CYAN  + "f(x):", f_result)
+            case 'c':
+                x = float(input("x = "))
+                a = float(input("a = "))
+                b = float(input("b = "))
+                c = float(input("c = "))
+                f_result = round(f(x, a, b, c), 3)
+                print(Fore.CYAN  + "f(x):", f_result)
 
-        elif respond == 'b':
-            x = int(input("x = "))
-            a = int(input("a = "))
-            b = int(input("b = "))
-            poly_result = round(polynomial(x, a, b), 3)
-            print(Fore.CYAN  + "Polynomial:", poly_result)
+            case 'b':
+                x = float(input("x = "))
+                a = float(input("a = "))
+                b = float(input("b = "))
+                poly_result = round(polynomial(x, a, b), 3)
+                print(Fore.CYAN  + "Polynomial:", poly_result)
 
-        elif respond == 'd':
-            a = float(input("a = "))
-            b = float(input("b = "))
-            pythagoras_result = round(pythagoras(a, b) , 3)
-            print(Fore.CYAN  + "Pythagoras:", pythagoras_result)
+            case 'd':
+                a = float(input("a = "))
+                b = float(input("b = "))
+                pythagoras_result = round(pythagoras(a, b) , 3)
+                print(Fore.CYAN  + "Pythagoras:", pythagoras_result)
 
-        elif respond == 'e':
-            r = float(input("r = "))
-            h = float(input("h = "))
-            Cylinder_volume_result = round(Cylinder_volume(r, h), 3)
-            print(Fore.CYAN  + "Cylinder Volume:", Cylinder_volume_result)
+            case 'e':
+                r = float(input("r = "))
+                h = float(input("h = "))
+                cylinder_volume_result = round(Cylinder_volume(r, h), 3)
+                print(Fore.CYAN  + "Cylinder Volume:", cylinder_volume_result)
 
-        elif respond == 'f':
-            m = float(input("m = ")) 
-            meters_to_feet_result = round(meters_to_feet(m), 3)
-            print(Fore.CYAN  + "feet: ", meters_to_feet_result)
+            case 'f':
+                m = float(input("m = ")) 
+                meters_to_feet_result = round(meters_to_feet(m), 3)
+                print(Fore.CYAN  + "feet: ", meters_to_feet_result)
         
-        elif respond == 'g':
-            r = float(input("r= "))
-            circle_area_result = round(circle_area(r), 3)
-            print(Fore.CYAN  + "Cicle area : ", circle_area_result)
+            case 'g':
+                r = float(input("r= "))
+                circle_area_result = round(circle_area(r), 3)
+                print(Fore.CYAN  + "Circle area : ", circle_area_result)
 
-        elif respond =='h':
-            f = float(input("Feet = "))
-            feet_to_meters_result = round(feet_to_meters(f), 3)
-            print(Fore.CYAN  + "meters : ", feet_to_meters_result)
+            case 'h':
+                f = float(input("Feet = "))
+                feet_to_meters_result = round(feet_to_meters(f), 3)
+                print(Fore.CYAN  + "meters : ", feet_to_meters_result)
 
-        else:
-            print(Fore.RED + "Invalid choice. Please try again.")
-            respond = show_menu()
+            case __:
+                print(Fore.RED + "Invalid choice. Please try again.")
+                respond = show_menu()
 
         again = input("Continue? (yes/no): ").strip().lower()
 
@@ -118,8 +123,8 @@ with open("results.txt", "a", encoding="utf-8") as file:
         file.write(f"Date and time: {now}\nPolynomial result: {poly_result}\n")
     if pythagoras_result is not None:
         file.write(f"Date and time: {now}\nPythagoras result: {pythagoras_result}\n")
-    if Cylinder_volume_result is not None:
-        file.write(f"Date and time: {now}\nCylinder Volume result: {Cylinder_volume_result}\n")
+    if cylinder_volume_result is not None:
+        file.write(f"Date and time: {now}\nCylinder Volume result: {cylinder_volume_result}\n")
     if meters_to_feet_result is not None:
         file.write(f"Date and time: {now}\nFeet result: {meters_to_feet_result}\n")
     if circle_area_result is not None:
