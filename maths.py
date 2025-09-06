@@ -1,3 +1,5 @@
+import tkinter as tk
+from tkinter import ttk, messagebox
 from math import *
 
 def fraction(x, y):
@@ -26,7 +28,7 @@ def Cylinder_volume(r, h):
     return pi * r**2 * h
 
 def circle_area(r):
-    return 2 * pi * r
+    return pi * r**2
 
 def meters_to_feet(m):
     return m / 0.3048

@@ -1,5 +1,7 @@
 # try.py
 from maths import circle_area, fraction, f, meters_to_feet, polynomial, pythagoras, Cylinder_volume, feet_to_meters
+from utils import plot_function, toggle_unit_system, UnitSystem
+unit_system = UnitSystem.METRIC
 from datetime import datetime
 from colorama import Fore, Style, init
 from pyfiglet import figlet_format
@@ -33,6 +35,10 @@ def show_menu():
         "F - Meters to Feet\n"
         "G - Circle Area\n"
         "H - Feet to Meters\n"
+        "I - Graph f(x)\n"
+        "J - Graph Polynomial\n"
+        "K - Toggle Unit System\n"
+
         "Enter your choice: "
     ).strip().lower()
 
@@ -89,10 +95,30 @@ try:
                 circle_area_result = round(circle_area(r), 3)
                 print(Fore.CYAN  + "Circle area : ", circle_area_result)
 
-            case 'h':
+            case 'h': # Meter
                 f = float(input("Feet = "))
                 feet_to_meters_result = round(feet_to_meters(f), 3)
                 print(Fore.CYAN  + "meters : ", feet_to_meters_result)
+
+            case 'i':  # Graph f(x)
+                a = float(input("a = "))
+                b = float(input("b = "))
+                c = float(input("c = "))
+                def fx(x):  # Vectorized version using NumPy
+                    expr = a * (x**2) + b * x + c
+                    return (np.log(expr) - np.sin(expr)) / (4 * np.pi * x**2 + np.cos(x - 2) * expr)
+                plot_function(fx, label="f(x)")
+
+            case 'j':  # Graph Polynomial
+                a = float(input("a = "))
+                b = float(input("b = "))
+                def poly(x):
+                    return a * (x**2) + b * x
+                plot_function(poly, label="Polynomial")
+
+            case 'k':
+                unit_system = toggle_unit_system(unit_system)
+                print(Fore.YELLOW + f"Unit system switched to: {unit_system.value}")
 
             case __:
                 print(Fore.RED + "Invalid choice. Please try again.")
