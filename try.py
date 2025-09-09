@@ -3,6 +3,7 @@ from maths import circle_area, fraction, f, meters_to_feet, polynomial, pythagor
 from utils import plot_function, toggle_unit_system, UnitSystem
 unit_system = UnitSystem.METRIC
 from datetime import datetime
+import numpy as np
 from colorama import Fore, Style, init
 from pyfiglet import figlet_format
 init(autoreset=True)
@@ -80,7 +81,7 @@ try:
                 print(Fore.CYAN  + "Pythagoras:", pythagoras_result)
 
             case 'e':
-                r = float(input("r = "))
+                r = float(input("raduis r = "))
                 h = float(input("h = "))
                 cylinder_volume_result = round(Cylinder_volume(r, h), 3)
                 print(Fore.CYAN  + "Cylinder Volume:", cylinder_volume_result)
@@ -91,7 +92,7 @@ try:
                 print(Fore.CYAN  + "feet: ", meters_to_feet_result)
         
             case 'g':
-                r = float(input("r= "))
+                r = float(input("radius r= "))
                 circle_area_result = round(circle_area(r), 3)
                 print(Fore.CYAN  + "Circle area : ", circle_area_result)
 
@@ -137,24 +138,26 @@ except Exception as e:
 # Save results to file
 with open("results.txt", "a", encoding="utf-8") as file:
     now = datetime.now()
+    file.write(f"\n==== Session on {now} ====\n")
+
     if error_occurred is not None:
-        file.write(f"Date and time: {now}\nSomething went wrong: {error_occurred}\n")
+        file.write(f"\nSomething went wrong: {error_occurred}\n")
     if name is not None:
         file.write(f"Name : {name}\n")
     if frac_result is not None:
-        file.write(f"Date and time: {now}\nFraction result: {frac_result}\n")
+        file.write(f"Fraction result: {frac_result}\n")
     if f_result is not None:
-        file.write(f"Date and time: {now}\nf(x) result: {f_result}\n")
+        file.write(f"f(x) result: {f_result}\n")
     if poly_result is not None:
-        file.write(f"Date and time: {now}\nPolynomial result: {poly_result}\n")
+        file.write(f"Polynomial result: {poly_result}\n")
     if pythagoras_result is not None:
-        file.write(f"Date and time: {now}\nPythagoras result: {pythagoras_result}\n")
+        file.write(f"Pythagoras result: {pythagoras_result}\n")
     if cylinder_volume_result is not None:
-        file.write(f"Date and time: {now}\nCylinder Volume result: {cylinder_volume_result}\n")
+        file.write(f"Cylinder Volume result: {cylinder_volume_result}\n")
     if meters_to_feet_result is not None:
-        file.write(f"Date and time: {now}\nFeet result: {meters_to_feet_result}\n")
+        file.write(f"Feet result: {meters_to_feet_result}\n")
     if circle_area_result is not None:
-        file.write(f"Date and time: {now}\nCircle result: {circle_area_result}\n")
+        file.write(f"Circle result: {circle_area_result}\n")
     if feet_to_meters_result is not None:
-        file.write(f"Date and time: {now}\nMeters result: {feet_to_meters_result}\n")
+        file.write(f"Meters result: {feet_to_meters_result}\n")
 
