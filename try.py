@@ -48,7 +48,7 @@ name = input("name: " )
 def handle_choice(respond):
 
             match respond :
-                case 'a':
+                case 'a': # Fraction
                     x = float(input("x = "))
                     y = float(input("y = "))
                     frac_result = round(fraction(x, y), 3)
@@ -62,31 +62,31 @@ def handle_choice(respond):
                     f_result = round(f(x, a, b, c), 3)
                     print(Fore.CYAN  + "f(x):", f_result)
 
-                case 'b':
+                case 'b': # Polynomial
                     x = float(input("x = "))
                     a = float(input("a = "))
                     b = float(input("b = "))
                     poly_result = round(polynomial(x, a, b), 3)
                     print(Fore.CYAN  + "Polynomial:", poly_result)
 
-                case 'd':
+                case 'd': # Pythagoras
                     a = float(input("a = "))
                     b = float(input("b = "))
                     pythagoras_result = round(pythagoras(a, b) , 3)
                     print(Fore.CYAN  + "Pythagoras:", pythagoras_result)
 
-                case 'e':
+                case 'e': # Cylinder Volume
                     r = float(input("raduis r = "))
                     h = float(input("h = "))
                     cylinder_volume_result = round(Cylinder_volume(r, h), 3)
                     print(Fore.CYAN  + "Cylinder Volume:", cylinder_volume_result)
 
-                case 'f':
+                case 'f': # Feet
                     m = float(input("m = ")) 
                     meters_to_feet_result = round(meters_to_feet(m), 3)
                     print(Fore.CYAN  + "feet: ", meters_to_feet_result)
             
-                case 'g':
+                case 'g': # Area of Circle
                     r = float(input("radius r= "))
                     circle_area_result = round(circle_area(r), 3)
                     print(Fore.CYAN  + "Circle area : ", circle_area_result)
